@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flashing Heart Slash Icon for 1 Minute → Open Link</title>
+  <style>
+    body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#fff}
+
+    img.icon{
+      width:150px;
+      height:auto;
+      cursor:pointer;
+      transition:transform .15s ease;
+    }
+    img.icon:active{transform:scale(.95)}
+
+    @keyframes flash {
+      0%   { opacity: 1; transform: scale(1) }
+      50%  { opacity: 0.3; transform: scale(.96) }
+      100% { opacity: 1; transform: scale(1) }
+    }
+    .flashing { animation: flash 800ms linear infinite; }
+  </style>
+</head>
+<body>
+  <img id="flashIcon" class="icon flashing" src="screenshot-1447-02-18-21-16-50.png" alt="Heart Slash Icon" />
+
+  <script>
+    const OPEN_URL = 'https://example.com';
+    const DURATION_MS = 60 * 1000; // 1 minute
+
+    const icon = document.getElementById('flashIcon');
+
+    const timer = setTimeout(() => {
+      icon.classList.remove('flashing');
+      icon.style.transform = 'scale(1.03)';
+      window.location.href = OPEN_URL;
+    }, DURATION_MS);
+
+    icon.addEventListener('click', () => {
+      clearTimeout(timer);
+      icon.classList.remove('flashing');
+      window.location.href = OPEN_URL;
+    });
+  </script>
+</body>
+</html>
